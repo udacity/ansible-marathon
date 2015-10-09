@@ -9,7 +9,7 @@ applications to [Marathon][marathon].
 localhost ansible_connection=local
 ```
 
-*playbook.ini:*
+*playbook.yml:*
 
 ```yaml
 - name: Deploy to Marathon
