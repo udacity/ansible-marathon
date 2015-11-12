@@ -59,7 +59,6 @@ from json import dumps, loads
 
 def request(url, method, data):
 
-    data = dumps(data)
     response, info = fetch_url(module, url, data=data, method=method,
                                headers={'Content-Type':'application/json'})
 
