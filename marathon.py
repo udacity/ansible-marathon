@@ -59,11 +59,18 @@ from json import dumps, loads
 
 def request(url, method, data):
 
-    response, info = fetch_url(module, url, data=data, method=method,
+    response, info = fetch_url(module=module, url=url, data=data, method=method,
                                headers={'Content-Type':'application/json'})
 
     if info['status'] not in (200, 201, 204):
-        module.fail_json(msg=info['msg'])
+        msg = {
+          "description": "request failed",
+          "url": url,
+          "method": method,
+          "data": data,
+          "info": info
+        }
+        module.fail_json(msg=dumps(msg))
 
     body = response.read()
 
@@ -88,7 +95,10 @@ def main():
 
     marathon_uri = module.params['marathon_uri']
     app_id = module.params['app_id']
+
     app_json = module.params['app_json']
+    if isinstance(app_json, dict):
+        app_json = dumps(app_json)
 
     if not marathon_uri.endswith('/'):
         marathon_uri = marathon_uri+'/'
@@ -98,7 +108,13 @@ def main():
     try:
         ret = put(marathon_uri, app_json)
     except Exception, e:
-        return module.fail_json(msg=e.message)
+        msg = {
+          "description": "could not PUT to Marathon",
+          "marathon_uri": marathon_uri,
+          "app_json": app_json,
+          "exception": repr(e)
+        }
+        return module.fail_json(msg=dumps(msg))
 
     module.exit_json(changed=True, meta=ret)
 
