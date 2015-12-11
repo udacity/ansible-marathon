@@ -59,7 +59,7 @@ from json import dumps, loads
 
 def request(url, method, data):
 
-    response, info = fetch_url(module, url, data=data, method=method,
+    response, info = fetch_url(module=module, url=url, data=data, method=method,
                                headers={'Content-Type':'application/json'})
 
     if info['status'] not in (200, 201, 204):
@@ -95,7 +95,10 @@ def main():
 
     marathon_uri = module.params['marathon_uri']
     app_id = module.params['app_id']
+
     app_json = module.params['app_json']
+    if isinstance(app_json, dict):
+        app_json = dumps(app_json)
 
     if not marathon_uri.endswith('/'):
         marathon_uri = marathon_uri+'/'
