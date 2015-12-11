@@ -63,7 +63,14 @@ def request(url, method, data):
                                headers={'Content-Type':'application/json'})
 
     if info['status'] not in (200, 201, 204):
-        module.fail_json(msg=info['msg'])
+        msg = {
+          "description": "request failed",
+          "url": url,
+          "method": method,
+          "data": data,
+          "info": info
+        }
+        module.fail_json(msg=dumps(msg))
 
     body = response.read()
 
@@ -98,7 +105,13 @@ def main():
     try:
         ret = put(marathon_uri, app_json)
     except Exception, e:
-        return module.fail_json(msg=e.message)
+        msg = {
+          "description": "could not PUT to Marathon",
+          "marathon_uri": marathon_uri,
+          "app_json": app_json,
+          "exception": repr(e)
+        }
+        return module.fail_json(msg=dumps(msg))
 
     module.exit_json(changed=True, meta=ret)
 
