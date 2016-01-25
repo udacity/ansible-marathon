@@ -103,7 +103,7 @@ def main():
     if not marathon_uri.endswith('/'):
         marathon_uri = marathon_uri+'/'
 
-    marathon_uri = marathon_uri+'v2/apps/'+app_id
+    marathon_uri = marathon_uri+'v2/apps/'+app_id+'?force=true'
 
     try:
         ret = put(marathon_uri, app_json)
