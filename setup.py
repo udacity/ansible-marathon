@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
     name='ansible-marathon',
-    version='0.1.0',
+    version='0.2.0',
     description=' An Ansible module for deploying applications to Mesos through Marathon',
     url='https://github.com/udacity/ansible-marathon',
     py_modules=[
