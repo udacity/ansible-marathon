@@ -27,7 +27,8 @@ See [examples/nodejs-rest-api/nodejs-rest-api-v1.json][app.json] from
 ## Usage
 
 ```
-$ ansible-playbook -i inventory.ini -M /path/to/ansible-marathon playbook.yml
+$ pip install --user ansible-marathon
+$ ansible-playbook -i inventory.ini -M ~/.local/lib/python2.7/site-packages/ansible_marathon playbook.yml
 ```
 
 [ansible]: http://docs.ansible.com/ansible/index.html
