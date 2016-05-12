@@ -1,5 +1,5 @@
-ansible-marathon is an [Ansible][ansible] module for deploying
-applications to [Marathon][marathon].
+ansible-marathon is an [Ansible][1] module for deploying
+applications to [Marathon][2].
 
 ## Example
 
@@ -21,8 +21,8 @@ localhost ansible_connection=local
 
 *app.json:*
 
-See [examples/nodejs-rest-api/nodejs-rest-api-v1.json][app.json] from
-[capgemini:Apollo][apollo].
+See [examples/nodejs-rest-api/nodejs-rest-api-v1.json][3] from
+[capgemini:Apollo][4].
 
 ## Usage
 
@@ -54,7 +54,7 @@ To release a new version of ansible-marathon:
 1. Add a version tag to git: `git tag 0.1`
 1. Publish to PyPI: `python setup.py sdist upload -r pypi`
 
-[ansible]: http://docs.ansible.com/ansible/index.html
-[marathon]: http://mesosphere.github.io/marathon/
-[app.json]: https://github.com/capgemini/Apollo/blob/master/examples/nodejs-rest-api/nodejs-rest-api-v1.json
-[apollo]: https://github.com/capgemini/Apollo/
+[1]: http://docs.ansible.com/ansible/index.html
+[2]: http://mesosphere.github.io/marathon/
+[3]: https://github.com/capgemini/Apollo/blob/master/examples/nodejs-rest-api/nodejs-rest-api-v1.json
+[4]: https://github.com/capgemini/Apollo/
